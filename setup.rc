@@ -1,0 +1,17 @@
+# Installer script for sysconf profile: sysconf.collectd        -*- shell-script -*-
+
+. /usr/lib/sysconf.base/common.sh
+
+_packages=""
+_packages="$_packages nginx"
+
+sysconf_require_packages "$_packages"
+
+[ -r /etc/nginx/sites-enabled/default ] \
+    && rm -f /etc/nginx/sites-enabled/default
+
+if ps x | grep " nginx:" | grep -vq grep; then
+    service nginx reload
+else
+    service nginx start
+fi
