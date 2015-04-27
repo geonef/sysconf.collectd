@@ -4,9 +4,25 @@
 
 _packages=""
 _packages="$_packages nginx"
+_packages="$_packages php5-cli php5-fpm"
 
 sysconf_require_packages "$_packages"
 
+# Fix php-fpm
+_force_fpm_restart=no
+if [ -r /etc/php5/fpm/pool.d/www.conf ]; then
+    rm -f /etc/php5/fpm/pool.d/www.conf
+    _force_fpm_restart=yes
+fi
+if ps x | grep php-fpm | grep -vq grep; then
+    if [ $_force_fpm_restart = yes ]; then
+        service php5-fpm restart
+    fi
+else
+    service php5-fpm start
+fi
+
+# Fix Nginx
 [ -r /etc/nginx/sites-enabled/default ] \
     && rm -f /etc/nginx/sites-enabled/default
 
