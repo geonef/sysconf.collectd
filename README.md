@@ -1,11 +1,10 @@
 # Gitted Sysconf profile for the 'collectd' tool
 
-## collectd-web
+## Collectd Control Panel
 
-* Official website: http://collectdweb.appspot.com/
-* Installed in: /usr/lib/collectd-web
-* Imported into this profile's tree/usr/lib/collectd-web as a Git
-  subtree:
+* Git URL: http://git.nethuis.nl/pub/cgp.git
+* Official website: http://pommi.nethuis.nl/collectd-graph-panel-v0-4/
+* Installed in: /usr/lib/collectd/cgp
+* Flatly Imported into this profile's tree/usr/lib/collectd/cgp (no
+  history)
 
-git subtree pull -P sysconf.collectd/tree/usr/lib/collectd-web git://github.com/httpdss/collectd-web.git master
-git subtree push -P sysconf.collectd/tree/usr/lib/collectd-web git://github.com/httpdss/collectd-web.git master
