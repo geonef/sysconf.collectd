@@ -8,3 +8,13 @@
 * Flatly Imported into this profile's tree/usr/lib/collectd/cgp (no
   history)
 
+
+## How to use?
+
+* Add it to a
+  [Sysconf repository](http://gitted.io/tutorial/setup-gitted-sysconf/)
+  as a Git subtree:
+
+```
+git subtree add -P sysconf.collectd git@github.com:geonef/sysconf.collectd.git master
+```
