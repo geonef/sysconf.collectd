@@ -3,8 +3,9 @@
 . /usr/lib/sysconf.base/common.sh
 
 _packages=""
-_packages="$_packages nginx"
-_packages="$_packages php5-cli php5-fpm"
+_packages="$_packages collectd"
+_packages="$_packages nginx php5-cli php5-fpm"
+_packages="$_packages rsyslog"
 
 sysconf_require_packages "$_packages"
 
