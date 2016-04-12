@@ -2,10 +2,17 @@
 
 . /usr/lib/sysconf.base/common.sh
 
+sysconf_fix_directory /var/lib/logwatch 0750 root:www-data
+sysconf_fix_directory /var/lib/logwatch/daily 0750 root:www-data
+sysconf_fix_directory /var/lib/logwatch/weekly 0750 root:www-data
+sysconf_fix_directory /var/lib/logwatch/monthly 0750 root:www-data
+
 _packages=""
+_packages="$_packages rsyslog"
+_packages="$_packages postfix"
+_packages="$_packages logwatch"
 _packages="$_packages collectd"
 _packages="$_packages nginx php5-cli php5-fpm"
-_packages="$_packages rsyslog"
 
 sysconf_require_packages "$_packages"
 
