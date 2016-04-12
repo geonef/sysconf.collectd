@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+while read line; do
+  #echo "youhou! $line" >>/tmp/youhou
+  true
+done
+
+##/usr/bin/php
+
+#$stdin = fopen("php://stdin");
+#while ($line = fgets($stdin)) {
+#}
+
