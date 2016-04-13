@@ -17,6 +17,11 @@ _packages="$_packages awstats"
 
 sysconf_require_packages "$_packages"
 
+# Fix Awstats
+if [ -f /etc/awstats/awstats.conf ]; then
+    mv /etc/awstats/awstats.conf /etc/awstats/awstats.conf.$(date +%Y-%m-%d)
+fi
+
 # Fix php-fpm
 _force_fpm_restart=no
 if [ -r /etc/php5/fpm/pool.d/www.conf ]; then
