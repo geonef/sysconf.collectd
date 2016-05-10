@@ -12,7 +12,7 @@ _packages="$_packages rsyslog"
 _packages="$_packages postfix"
 _packages="$_packages logwatch"
 _packages="$_packages collectd"
-_packages="$_packages nginx php5-cli php5-fpm"
+_packages="$_packages nginx php-cli php-fpm"
 _packages="$_packages awstats"
 _packages="$_packages multitail"
 
@@ -24,17 +24,33 @@ if [ -f /etc/awstats/awstats.conf ]; then
 fi
 
 # Fix php-fpm
+# php_service=php5-fpm
+php_service=php7.0-fpm
+
 _force_fpm_restart=no
+for d in /etc/php/7.0/fpm/pool.d /etc/php5/fpm/pool.d; do
+    if [ -d $d ]; then
+        if [ -r $d/www.conf ]; then
+            rm -f $d/www.conf
+            _force_fpm_restart=yes
+        fi
+        if [ ! -h $d/collectd-cgp.pool.conf ]; then
+            nef_log "Creating symlink: $d/collectd-cgp.pool.conf"
+            ln -s /etc/php5/fpm/pool.d/collectd-cgp.pool.conf $d/collectd-cgp.pool.conf
+            _force_fpm_restart=yes
+        fi
+    fi
+done
 if [ -r /etc/php5/fpm/pool.d/www.conf ]; then
     rm -f /etc/php5/fpm/pool.d/www.conf
     _force_fpm_restart=yes
 fi
 if ps x | grep php-fpm | grep -vq grep; then
     if [ $_force_fpm_restart = yes ]; then
-        service php5-fpm restart
+        service $php_service restart # php5-fpm
     fi
 else
-    service php5-fpm start
+    service $php_service start # php5-fpm
 fi
 
 # Fix Nginx
