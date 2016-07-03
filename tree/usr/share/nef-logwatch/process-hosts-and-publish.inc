@@ -6,7 +6,7 @@
 #Check if removed-but-not-purged
 test -x /usr/share/logwatch/scripts/logwatch.pl || exit 0
 
-hosts=$(cat /var/log/messages | cut -d' ' -f4 | uniq | sort | uniq)
+hosts=$(cat /var/log/messages | awk '{ print $4 }' | uniq | sort | uniq)
 
 for host in $hosts; do
     /usr/sbin/logwatch --range $range --detail $detail --hostlimit $host --format html \
