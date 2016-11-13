@@ -1,0 +1,8 @@
+#!/bin/bash
+
+date=$(date -d "today" +%Y-%m-%d)
+range="since last monday"
+detail=high
+period=weekly
+
+. /usr/share/nef-logwatch/process-hosts-and-publish.inc

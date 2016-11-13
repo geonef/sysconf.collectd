@@ -1,0 +1,11 @@
+# Awstats common options
+
+LogFile="/var/log/httpd.log"
+LogType=W
+
+# Wrapped by syslog:
+LogFormat = "%time3 %virtualhost %other %host %other %logname %time1 %methodurl %code %bytesd %refererquot %uaquot"
+
+
+AllowToUpdateStatsFromBrowser=1
+

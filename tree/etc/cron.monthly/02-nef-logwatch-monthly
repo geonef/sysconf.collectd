@@ -1,0 +1,8 @@
+#!/bin/bash
+
+date=$(date -d "1 month ago" +%Y-%m-01)
+range="1 month ago for that month"
+detail=high
+period=monthly
+
+. /usr/share/nef-logwatch/process-hosts-and-publish.inc
