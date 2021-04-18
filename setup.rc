@@ -15,6 +15,7 @@ _packages="$_packages collectd"
 _packages="$_packages nginx php-cli php-fpm"
 _packages="$_packages awstats"
 _packages="$_packages multitail"
+_packages="$_packages rrdtool"
 
 sysconf_require_packages "$_packages"
 
